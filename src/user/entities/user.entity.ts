@@ -3,12 +3,14 @@ import { Base } from '../../core/base.entity';
 
 @Entity()
 export class User extends Base {
-  @Column()
+  @Column({
+    unique: true
+  })
   email: string;
 
   @Column()
   nickname: string;
 
   @Column()
-  password: number;
+  password: string;
 }

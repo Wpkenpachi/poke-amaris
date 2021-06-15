@@ -5,7 +5,8 @@ export abstract class Base {
   id: number;
 
   @Column({
-    type: 'date'
+    type: 'timestamp',
+    default: new Date()
   })
-  created_at: Date;
+  created_at: string;
 }
