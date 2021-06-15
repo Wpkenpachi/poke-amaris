@@ -19,7 +19,7 @@ export class PokemonService {
       const createdPokemon = new this.pokemonModel(pokemonData);
       return createdPokemon.save();
     } catch (error) {
-      throw new BadRequestException(error);
+      throw error;
     }
 
   }
@@ -28,15 +28,15 @@ export class PokemonService {
     try {
       return this.pokemonModel.find().exec();
     } catch (error) {
-      throw new BadRequestException(error);
+      throw error;
     }
   }
 
-  findOne(id: string) {
+  async findOne(id: string): Promise<Pokemon> {
     try {
       return this.pokemonModel.findOne({ _id: id }).exec();
     } catch (error) {
-      throw new NotFoundException(error);
+      throw error;
     }
   }
 

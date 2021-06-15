@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, BadRequestException, NotFoundException } from '@nestjs/common';
 import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
@@ -18,12 +18,20 @@ export class PokemonController {
 
   @Get()
   findAll() {
-    return this.pokemonService.findAll();
+    try {
+      return this.pokemonService.findAll();
+    } catch (error) {
+      throw new NotFoundException(error);
+    }
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.pokemonService.findOne(id);
+    try {
+      return this.pokemonService.findOne(id);
+    } catch (error) {
+      throw new NotFoundException(error);
+    }
   }
 
   @Patch(':id')
