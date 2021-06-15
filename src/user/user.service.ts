@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
 import { User } from 'src/models';
@@ -21,9 +21,12 @@ export class UserService {
     }
   }
 
-  async update(id: number, updateUserDto: UpdateUserDto) {
+  async update(id: string, updateUserDto: UpdateUserDto) {
     try {
-      await this.userRepository.findOneOrFail(id);
+      const userExists: User = await this.userRepository.findOneOrFail(id);
+      if (!userExists) throw new NotFoundException(`User with id ${id} was not found.`);
+      // delete updateUserDto.id;
+      updateUserDto.password = await passwordHashing(updateUserDto.password);
       const updatedUserData: User = plainToClass(User, updateUserDto);
       await this.userRepository.update(id, updatedUserData);
     } catch (error) {

@@ -20,8 +20,7 @@ export class UserController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
     try {
-      const idNum = id as unknown as number;
-      return this.userService.update(idNum, updateUserDto);
+      return this.userService.update(id, updateUserDto);
     } catch (error) {
       throw new BadRequestException(error?.message || 'User Could Not Be Updated!');
     }

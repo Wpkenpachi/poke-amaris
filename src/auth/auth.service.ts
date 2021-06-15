@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { classToPlain } from 'class-transformer';
@@ -19,8 +19,10 @@ export class AuthService {
     try {
       const { email, password } = loginAuthDto;
       const user: User = await this.userRepository.findOne({ email });
+      if (!user) throw new NotFoundException('User Not Found, invalid crecentials');
       const passwordMatches = await passwordCompare(password, user.password);
       if (!passwordMatches) {
+        console.log(passwordMatches, password)
         throw new UnauthorizedException();
       }
       return {

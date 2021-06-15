@@ -29,7 +29,7 @@ export class Pokemon {
   @Prop({
     required: true,
   })
-  type: PokemonTypes[];
+  type: string[];
 
   @Prop({
     required: true,
