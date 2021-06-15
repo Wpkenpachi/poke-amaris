@@ -1,4 +1,4 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import { Controller, Post, Body, UnauthorizedException } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { LoginAuthDto } from './dto/login-auth.dto';
 
@@ -8,6 +8,10 @@ export class AuthController {
 
   @Post()
   login(@Body() createAuthDto: LoginAuthDto) {
-    return this.authService.login(createAuthDto);
+    try {
+      return this.authService.login(createAuthDto);
+    } catch (error) {
+      throw new UnauthorizedException(error);
+    }
   }
 }

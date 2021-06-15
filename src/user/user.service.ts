@@ -5,7 +5,7 @@ import { User } from 'src/models';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-
+import { passwordHashing } from '../utils/password_hashing';
 @Injectable()
 export class UserService {
   constructor(@InjectRepository(User) private readonly userRepository: Repository<User>) { }
@@ -13,6 +13,7 @@ export class UserService {
   async create(createUserDto: CreateUserDto) {
     const newUser: User = plainToClass(User, createUserDto);
     try {
+      newUser.password = await passwordHashing(newUser.password);
       const createdUser = await this.userRepository.save(newUser);
       return createdUser;
     } catch (error) {

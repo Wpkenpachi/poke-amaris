@@ -11,8 +11,8 @@ import { SECRET, EXPIRES_IN } from '../config';
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],
   imports: [
-    PassportModule,
     UserModule,
+    PassportModule,
     JwtModule.register({
       secret: SECRET,
       signOptions: { expiresIn: EXPIRES_IN },
