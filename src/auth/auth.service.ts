@@ -25,9 +25,18 @@ export class AuthService {
         console.log(passwordMatches, password)
         throw new UnauthorizedException();
       }
+
       return {
         access_token: this.jwtService.sign(classToPlain(user))
       }
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  async getUser(jwtToken: string) {
+    try {
+      return this.jwtService.decode(jwtToken);
     } catch (error) {
       throw error;
     }
