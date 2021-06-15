@@ -4,5 +4,5 @@ import { CreatePokemonDto } from './create-pokemon.dto';
 
 export class UpdatePokemonDto extends PartialType(CreatePokemonDto) {
   @IsNumber()
-  id: number;
+  _id: string;
 }

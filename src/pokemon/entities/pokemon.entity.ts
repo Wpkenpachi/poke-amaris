@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document } from 'mongoose';
 
 export enum PokemonTypes {
   Normal = 'NORMAL',
@@ -17,22 +19,24 @@ export enum PokemonTypes {
   Flying = 'FLYING'
 }
 
-@Entity()
-export class Pokemon {
-  @PrimaryGeneratedColumn()
-  pokemonId: number;
+export type PokemonDocument = Pokemon & Document;
 
-  @Column()
+@Schema()
+export class Pokemon {
+  @Prop({ required: true })
   name: string;
 
-  @Column({
-    type: "enum",
-    enum: PokemonTypes
+  @Prop({
+    required: true,
   })
-  type: PokemonTypes;
+  type: PokemonTypes[];
 
-  @Column({
-    type: 'date'
+  @Prop({
+    required: true,
+    default: new Date(),
+    type: Date
   })
   created_at: Date;
 }
+
+export const PokemonSchema = SchemaFactory.createForClass(Pokemon);

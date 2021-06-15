@@ -1,26 +1,50 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { plainToClass } from 'class-transformer';
+import { Model } from 'mongoose';
+import { Pokemon } from 'src/models';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
+import { PokemonDocument, PokemonTypes } from './entities/pokemon.entity';
 
 @Injectable()
 export class PokemonService {
-  create(createPokemonDto: CreatePokemonDto) {
-    return 'This action adds a new pokemon';
+
+  constructor(@InjectModel(Pokemon.name) private pokemonModel: Model<PokemonDocument>) { }
+
+  async create(createPokemonDto: CreatePokemonDto): Promise<Pokemon> {
+    try {
+      const pokemonData = plainToClass(Pokemon, createPokemonDto);
+      pokemonData.type = pokemonData.type.filter(type => Object.values(PokemonTypes).some((v) => v === type));
+      const createdPokemon = new this.pokemonModel(pokemonData);
+      return createdPokemon.save();
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
+
   }
 
-  findAll() {
-    return `This action returns all pokemon`;
+  async findAll(): Promise<Pokemon[]> {
+    try {
+      return this.pokemonModel.find().exec();
+    } catch (error) {
+      throw new BadRequestException(error);
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pokemon`;
+  findOne(id: string) {
+    try {
+      return this.pokemonModel.findOne({ _id: id }).exec();
+    } catch (error) {
+      throw new NotFoundException(error);
+    }
   }
 
-  update(id: number, updatePokemonDto: UpdatePokemonDto) {
+  update(id: string, updatePokemonDto: UpdatePokemonDto) {
     return `This action updates a #${id} pokemon`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} pokemon`;
   }
 }
