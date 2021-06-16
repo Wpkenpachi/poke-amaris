@@ -1,5 +1,11 @@
-# Desafio Amaris Consulting - Backend Developer
+# Amaris Consulting Challenge - Backend Developer
 
+## Setup
+  - First Clone the project
+  - Run `$ docker-compose up` or `$ docker compose up -d` to up the api server and databases
+  - Access [http://localhost:8000/api](http://localhost:8000/api) in the browser to see the swagger documentation
+
+# Aboute the Challenge
 ## FEATURES
   * [x] Login (JWT Auth)
   * [x] User Registration
