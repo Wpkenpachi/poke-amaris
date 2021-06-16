@@ -3,10 +3,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { User } from '../models/index';
+import { MONGO_HOST, MONGO_PORT, MONGO_DATABASE } from '../config';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost:27017/poke-amaris'),
+    MongooseModule.forRoot(`mongodb://${MONGO_HOST}:${MONGO_PORT}/${MONGO_DATABASE}`),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],

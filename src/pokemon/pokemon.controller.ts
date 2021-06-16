@@ -3,8 +3,11 @@ import { PokemonService } from './pokemon.service';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 @Controller('pokemon')
 @UseGuards(JwtAuthGuard)
+@ApiBearerAuth()
+@ApiTags('Pokemon')
 export class PokemonController {
   constructor(private readonly pokemonService: PokemonService) { }
 

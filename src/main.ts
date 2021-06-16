@@ -11,11 +11,13 @@ async function bootstrap() {
   const { PORT } = process.env;
 
   // Swagger
-  const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+  const config = new DocumentBuilder().addBearerAuth()
+    .setTitle('Pokemon Api')
+    .setDescription('The Pokemon API description')
     .setVersion('1.0')
-    .addTag('cats')
+    .addTag('Auth')
+    .addTag('User')
+    .addTag('Pokemon')
     .build();
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);

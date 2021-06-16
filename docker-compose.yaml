@@ -1,0 +1,55 @@
+version: "3.8"
+services:
+  postgres:
+    image: postgres
+    restart: always
+    container_name: auth_database
+    environment:
+      POSTGRES_USER: poke-amaris
+      POSTGRES_PASSWORD: poke-amaris
+      POSTGRES_DB: poke-amaris
+    networks:
+      - database_network
+
+  mongodb:
+    image: mongo
+    container_name: pokemon_database
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+    networks:
+        - database_network
+
+  api:
+    depends_on:
+      - postgres
+      - mongodb
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: poke-amaris-api
+    environment:
+      # jwt secret
+      SECRET: 9fbd6434-d6ec-4365-a4e2-fb28264a0e1e
+      # postgres env vars
+      POSTGRES_HOST: postgres
+      POSTGRES_PORT: 5432
+      POSTGRES_USER: poke-amaris
+      POSTGRES_PASSWORD: poke-amaris
+      POSTGRES_DB: poke-amaris
+      # mongo env vars
+      MONGO_HOST: mongodb
+      MONGO_PORT: 27017
+      MONGO_DATABASE: poke-amaris
+      PORT: 8000
+    volumes:
+      - ./src:/usr/src/app/src
+    entrypoint: npm run start:dev
+    ports:
+      - 8000:8000
+    networks:
+      - database_network
+
+networks:
+  database_network:
+    driver: bridge

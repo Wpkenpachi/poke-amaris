@@ -18,7 +18,7 @@
   * [x] Setup com MongoDB
 
 ## DESEJÁVEL
-  * [ ] Setup com Docker ( usando docker-compose se possível )
+  * [x] Setup com Docker ( usando docker-compose se possível )
   * [x] Documentação da API ( swagger, ApiDoc, etc. )Confidential C
   * [x] Projeto desenvolvido com NESTJS
   * [x] Setup também com PostgreSQL
