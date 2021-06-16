@@ -12,7 +12,7 @@
 ## FEATURES
   * [x] Login (JWT Auth)
   * [x] User Registration
-  * [x] User Edit (change allowed only to the own user)
+  * [x] User Edit (Changes allowed only for the own user)
   * [x] Pokemon Registration (Authenticated Route)
   * [x] Pokemon Edit (Authenticated)
   * [x] Get Pokemon List (Authenticated)
