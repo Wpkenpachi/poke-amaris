@@ -19,7 +19,7 @@
 
 ## DESEJÁVEL
   * [x] Setup com Docker ( usando docker-compose se possível )
-  * [x] Documentação da API ( swagger, ApiDoc, etc. )Confidential C
+  * [x] Documentação da API ( swagger, ApiDoc, etc. )
   * [x] Projeto desenvolvido com NESTJS
   * [x] Setup também com PostgreSQL
 
