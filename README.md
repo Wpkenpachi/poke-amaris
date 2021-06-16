@@ -2,7 +2,7 @@
 
 ## Setup
   - First Clone the project
-  - Run `$ docker-compose up` or `$ docker compose up -d` to up the api server and databases
+  - Run `$ docker-compose up` or `$ docker compose up -d` inside the project folder, to up the api server and databases
   - Access [http://localhost:8000/api](http://localhost:8000/api) in the browser to see the swagger documentation
 
 # Aboute the Challenge
