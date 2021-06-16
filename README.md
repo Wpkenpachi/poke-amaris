@@ -1,5 +1,8 @@
 # Amaris Consulting Challenge - Backend Developer
 
+## Required
+  - Docker
+  - Docker-Compose
 ## Setup
   - First Clone the project
   - Run `$ docker-compose up` or `$ docker compose up -d` inside the project folder, to up the api server and databases
@@ -19,7 +22,7 @@
 ## PRÉ-REQUISITOS
   * [x] É necessário nos enviar a coleção do Postman / Insomnia, para averiguarmos
   * [x] O projeto precisa ter autenticação, usar JWT nos Endpoints
-  * [ ] No arquivo README.MD do projeto, precisa constar o setup
+  * [x] No arquivo README.MD do projeto, precisa constar o setup
   * [x] Projeto em NODEJS usando Express
   * [x] Setup com MongoDB
 
