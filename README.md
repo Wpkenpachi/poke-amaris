@@ -7,7 +7,7 @@
   - First Clone the project
   - Run `$ docker-compose up` or `$ docker compose up -d` inside the project folder, to up the api server and databases
   - Access [http://localhost:8000/api](http://localhost:8000/api) in the browser to see the swagger documentation
-Obs: [Insomnia export request file 'Insomnia_2021-06-16_export.json'](Insomnia_2021-06-16_export.json)
+  - Obs: [Insomnia export request file 'Insomnia_2021-06-16_export.json'](Insomnia_2021-06-16_export.json)
 # Aboute the Challenge
 ## FEATURES
   * [x] Login (JWT Auth)
