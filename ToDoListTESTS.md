@@ -28,13 +28,19 @@
     - Test Success
   - Pokemon Detail
     - Test Authentication Guard
+    - Test Not Found
     - Test Success
   - Create Pokemon
     - Test Authentication Guard
     - Test Success
+    - Test Invalid Fields
+    - Test Invalid Values
   - Edit Pokemon
     - Test Authentication Guard
     - Test Success
+    - Test Invalid Fields
+    - Test Invalid Values
   - Delete Pokemon
     - Test Authentication Guard
     - Test Success
+    - Test Not Found
