@@ -5,7 +5,7 @@ import { JwtStrategy } from './jwt.strategy';
 import { JwtModule } from '@nestjs/jwt';
 import { PassportModule } from '@nestjs/passport';
 import { SECRET, EXPIRES_IN } from '../config';
-import { UserModule } from 'src/user/user.module';
+import { UserModule } from '../../src/user/user.module';
 
 @Module({
   controllers: [AuthController],

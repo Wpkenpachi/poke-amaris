@@ -2,8 +2,8 @@ import { Injectable, NotFoundException, UnauthorizedException } from '@nestjs/co
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { classToPlain } from 'class-transformer';
-import { User } from 'src/models';
-import { passwordCompare } from 'src/utils/password_hashing';
+import { User } from '../../src/models/index';
+import { passwordCompare } from '../../src/utils/password_hashing';
 import { Repository } from 'typeorm';
 import { LoginAuthDto } from './dto/login-auth.dto';
 

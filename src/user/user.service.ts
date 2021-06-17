@@ -1,11 +1,11 @@
 import { Injectable, NotFoundException, ExecutionContext } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
-import { User } from 'src/models';
+import { User } from '../../src/models/index';
 import { Repository } from 'typeorm';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { passwordHashing } from '../utils/password_hashing';
+import { passwordHashing } from '../../src/utils/password_hashing';
 @Injectable()
 export class UserService {
   constructor(
